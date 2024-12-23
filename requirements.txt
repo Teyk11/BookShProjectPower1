@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+SQLAlchemy
+requests
+beautifulsoup4
+werkzeug
+Jinja2
+translate
+forex_python
