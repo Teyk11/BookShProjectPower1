@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "5000:5000"  # Проброс порта 5000 на хосте в порт 5000 контейнера
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development  # Включаем режим отладки Flask
+    volumes:
+      - .:/app  # Монтирование текущей директории в контейнер
+    command: flask run --host=0.0.0.0  # Убедитесь, что Flask слушает на всех интерфейсах
+    restart: always

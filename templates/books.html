@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .filter li {
+            margin: 0 10px;
+            list-style: none;
+        }
+
+        .filter a {
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: #4CAF50;
+            border: 2px solid transparent;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .filter a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .books-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .book-item {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .book-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .book-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .book-details {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .book-price {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .availability {
+            color: #4CAF50;
+        }
+
+        .view-all-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #4CAF50;
+            text-decoration: none;
+            border: 2px solid #4CAF50;
+            padding: 12px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .view-all-link:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Books Collection</h1>
+    </header>
+
+    <div class="container">
+        <p>Filter by first letter:</p>
+        <ul class="filter">
+            {% for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+            <li><a href="?letter={{ char }}">{{ char }}</a></li>
+            {% endfor %}
+        </ul>
+
+        {% if letter %}
+        <h2>Books starting with "{{ letter }}"</h2>
+        {% endif %}
+
+        <div class="books-list">
+            {% for book in books %}
+            <div class="book-item">
+                <div class="book-title">{{ book.title }}</div>
+                <div class="book-details">
+                    <span class="book-price">${{ book.price }}</span> -
+                    <span class="availability">{{ book.availability }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="/books" class="view-all-link">View All Books</a>
+    </div>
+</body>
+</html>
